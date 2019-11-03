@@ -1,5 +1,10 @@
 import * as fs from "fs";
-import { getComponentDirPath, getExtension, getPageDirPath } from "./config";
+import {
+  getComponentDirPath,
+  getExtension,
+  getPageDirPath,
+  getServiceDirPath
+} from "./config";
 import defineComponentStyles from "./define-component-styles";
 import {
   TemplateFileType,
@@ -29,8 +34,17 @@ export const readTemplateFile = ({ from, file }: TemplateFileType) =>
 export const createComponentDirIfNotExists = () =>
   createDirIfNotExists(getComponentDirPath());
 
+/**
+ *
+ */
 export const createPageDirIfNotExists = () =>
   createDirIfNotExists(getPageDirPath());
+
+/**
+ *
+ */
+export const createServiceDirIfNotExists = () =>
+  createDirIfNotExists(getServiceDirPath());
 
 /**
  *
@@ -43,8 +57,8 @@ const createStyleComponentFile = ({
 }: CreateStyleFileType & ComponentFileType) => {
   const nameLowerCase = <string>name.toLowerCase();
 
-  if (theme === "css")
-    return fs.writeFileSync(`${path}/${nameLowerCase}.css`, "");
+  if (theme === "css" || theme === "scss")
+    return fs.writeFileSync(`${path}/${nameLowerCase}.${theme}`, "");
 
   const styledFile = <string>readTemplateFile({
     file: "styled.js",

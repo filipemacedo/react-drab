@@ -13,6 +13,6 @@ export type ComponentType = {
 
 export type ComponentFileType = {
   name: string;
-  theme: "css" | "styled-components" | "none";
+  theme: "css" | "styled-components" | "none" | "scss";
   file?: string;
 };

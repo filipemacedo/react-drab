@@ -1,5 +1,8 @@
 {
-  "extension": "js",
-  "component": "testando/components",
-  "pages": "testando/pages"
+  "extension": "ts",
+  "isNative": true,
+  "components": "testando/components",
+  "pages": "testando/pages",
+  "services": "testando/services",
+  "hooks": "testando/hooks"
 }

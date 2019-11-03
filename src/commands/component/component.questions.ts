@@ -10,7 +10,7 @@ export const createQuestions = async () => {
     {
       type: "list",
       name: "theme",
-      choices: ["css", "styled-components", "none"],
+      choices: ["css", "styled-components", "scss", "none"],
       message: "Which stylization do you prefer?"
     },
     {

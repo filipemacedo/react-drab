@@ -5,11 +5,12 @@ export default ({ theme, file, name }: ComponentFileType): string => {
   const pattern: RegExp = /\/\/.+\'\.\/styles\';/g;
 
   if (theme === "none") return file.replace(pattern, "");
-  if (theme === "css")
-    return file.replace(pattern, `import './${nameLowerCase}.css';`);
+  
+  if (theme === "css" || theme === "scss")
+    return file.replace(pattern, `import './${nameLowerCase}.${theme}';`);
 
   return file
     .replace(pattern, `import { Container } from './${nameLowerCase}.styles'`)
     .replace(/<div \/>/g, "<Container />")
-    .replace(/<div><\/div>/g, '<Container></Container>');
+    .replace(/<div><\/div>/g, "<Container></Container>");
 };
