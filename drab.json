@@ -1,4 +1,5 @@
 {
   "extension": "js",
-  "component": "testando/components"
+  "component": "testando/components",
+  "pages": "testando/pages"
 }

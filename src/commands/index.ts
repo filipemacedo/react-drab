@@ -5,8 +5,9 @@ import {
   CommandsFunctionType
 } from "./commands.type";
 import component from "./component";
+import page from "./page";
 
-const commands: CommandsFunctionType[] = [help, component];
+const commands: CommandsFunctionType[] = [help, component, page];
 
 export default (argv: argvType) => {
   for (let command of commands) {

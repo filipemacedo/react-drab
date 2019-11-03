@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import { getComponentDirPath, getExtension } from "./config";
+import { getComponentDirPath, getExtension, getPageDirPath } from "./config";
 import defineComponentStyles from "./define-component-styles";
 import {
   TemplateFileType,
@@ -29,6 +29,9 @@ export const readTemplateFile = ({ from, file }: TemplateFileType) =>
 export const createComponentDirIfNotExists = () =>
   createDirIfNotExists(getComponentDirPath());
 
+export const createPageDirIfNotExists = () =>
+  createDirIfNotExists(getPageDirPath());
+
 /**
  *
  * @param param0
@@ -54,6 +57,28 @@ const createStyleComponentFile = ({
   );
 };
 
+const createReactComponent = ({ name, type, theme, dirPath }) => {
+  const componentFilePath: string = `${dirPath}/index.${getExtension()}`;
+
+  createDirIfNotExists(dirPath);
+
+  const typeFile: string = readTemplateFile({
+    file: `${type}.js`,
+    from: "components"
+  });
+
+  let replacedFile: string = typeFile.replace(/\{componentName\}/g, name);
+
+  replacedFile = <string>(
+    defineComponentStyles({ theme, file: replacedFile, name })
+  );
+
+  if (theme !== "none")
+    createStyleComponentFile({ name, path: dirPath, theme });
+
+  return fs.writeFileSync(componentFilePath, replacedFile);
+};
+
 /**
  *
  * @param name
@@ -64,19 +89,27 @@ export const createComponent = ({
   type,
   theme
 }: ComponentFileType & ComponentType) => {
-  const componentDirPath: string = `${getComponentDirPath()}/${name}`;
-  const componentFilePath: string = `${componentDirPath}/index.${getExtension()}`;
+  const dirPath: string = `${getComponentDirPath()}/${name}`;
 
-  createDirIfNotExists(componentDirPath);
+  return createReactComponent({
+    name,
+    type,
+    theme,
+    dirPath
+  });
+};
 
-  const typeFile: string = readTemplateFile({ file: `${type}.js`, from: "components" });
+export const createPage = ({
+  name,
+  type,
+  theme
+}: ComponentFileType & ComponentType) => {
+  const dirPath: string = `${getPageDirPath()}/${name}`;
 
-  let replacedFile: string = typeFile.replace(/\{componentName\}/g, name);
-
-  replacedFile = <string>defineComponentStyles({ theme, file: replacedFile, name });
-
-  if (theme !== "none")
-    createStyleComponentFile({ name, path: componentDirPath, theme });
-
-  return fs.writeFileSync(componentFilePath, replacedFile);
+  return createReactComponent({
+    name,
+    type,
+    theme,
+    dirPath
+  });
 };
