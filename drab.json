@@ -1,5 +1,5 @@
 {
-  "extension": "ts",
+  "extension": "js",
   "isNative": true,
   "components": "testando/components",
   "pages": "testando/pages",

@@ -14,8 +14,6 @@ export const helpCreate: Function = () => {};
 export const create = async ({ help }) => {
   if (help) return helpCreate();
 
-  console.log("page")
-
   const { name, theme, type } = await createQuestions();
 
   createPageDirIfNotExists();

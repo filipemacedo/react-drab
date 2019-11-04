@@ -3,7 +3,8 @@ import {
   getComponentDirPath,
   getExtension,
   getPageDirPath,
-  getServiceDirPath
+  getServiceDirPath,
+  getHookDirPath
 } from "./config";
 import defineComponentStyles from "./define-component-styles";
 import {
@@ -12,6 +13,7 @@ import {
   ComponentFileType,
   ComponentType
 } from "../types/files.type";
+import { kebabCase, pascalCase, spaceToPascalCase } from "./string-cases";
 
 const templatePath = `${__dirname}/../templates`;
 
@@ -46,6 +48,9 @@ export const createPageDirIfNotExists = () =>
 export const createServiceDirIfNotExists = () =>
   createDirIfNotExists(getServiceDirPath());
 
+export const createHookDirIfNotExists = () =>
+  createDirIfNotExists(getHookDirPath());
+
 /**
  *
  * @param param0
@@ -56,9 +61,10 @@ const createStyleComponentFile = ({
   theme
 }: CreateStyleFileType & ComponentFileType) => {
   const nameLowerCase = <string>name.toLowerCase();
+  const nameKebabCase = kebabCase(nameLowerCase);
 
   if (theme === "css" || theme === "scss")
-    return fs.writeFileSync(`${path}/${nameLowerCase}.${theme}`, "");
+    return fs.writeFileSync(`${path}/${nameKebabCase}.${theme}`, "");
 
   const styledFile = <string>readTemplateFile({
     file: "styled.js",
@@ -66,7 +72,7 @@ const createStyleComponentFile = ({
   });
 
   return fs.writeFileSync(
-    `${path}/${nameLowerCase}.styles.${getExtension()}`,
+    `${path}/${nameKebabCase}.styles.${getExtension()}`,
     styledFile
   );
 };
@@ -81,10 +87,13 @@ const createReactComponent = ({ name, type, theme, dirPath }) => {
     from: "components"
   });
 
-  let replacedFile: string = typeFile.replace(/\{componentName\}/g, name);
+  let replacedFile: string = typeFile.replace(
+    /\{componentName\}/g,
+    spaceToPascalCase(name)
+  );
 
   replacedFile = <string>(
-    defineComponentStyles({ theme, file: replacedFile, name })
+    defineComponentStyles({ theme, file: replacedFile, name: kebabCase(name) })
   );
 
   if (theme !== "none")
@@ -103,7 +112,7 @@ export const createComponent = ({
   type,
   theme
 }: ComponentFileType & ComponentType) => {
-  const dirPath: string = `${getComponentDirPath()}/${name}`;
+  const dirPath: string = `${getComponentDirPath()}/${spaceToPascalCase(name)}`;
 
   return createReactComponent({
     name,
@@ -118,7 +127,7 @@ export const createPage = ({
   type,
   theme
 }: ComponentFileType & ComponentType) => {
-  const dirPath: string = `${getPageDirPath()}/${name}`;
+  const dirPath: string = `${getPageDirPath()}/${spaceToPascalCase(name)}`;
 
   return createReactComponent({
     name,

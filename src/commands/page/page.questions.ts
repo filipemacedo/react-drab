@@ -1,6 +1,7 @@
 import * as inquirer from "inquirer";
+import { ComponentCreateQuestionsType } from "../../types/component.type";
 
-export const createQuestions = async () => {
+export const createQuestions = async (): Promise<ComponentCreateQuestionsType> => {
   return inquirer.prompt([
     {
       type: "input",

@@ -1,10 +1,7 @@
 import { readTemplateFile } from "../../helpers/files";
 import * as fs from "fs";
-import {
-  getPageDirPath,
-  getExtension,
-  getServiceDirPath
-} from "../../helpers/config";
+import { getExtension, getServiceDirPath } from "../../helpers/config";
+import { kebabCase, camelCase } from "../../helpers/string-cases";
 
 type CreateServiceType = {
   name: string;
@@ -34,15 +31,18 @@ const createFunctionsOfVerb = (name: string) => (
   file: string,
   verb: string
 ): string => {
-  const verbLowerCase = verb.toLowerCase();
-  const nameLowerCase = name.toLowerCase();
+  const verbLowerCase: string = verb.toLowerCase();
+  const nameLowerCase: string = name.toLowerCase();
 
   const verbTemplateFile: string = readTemplateFile({
     file: `${verbLowerCase}.js`,
     from: "services"
   });
 
-  const verbReplaced = verbTemplateFile.replace(/\{serviceNameLowerCase\}/g, nameLowerCase);
+  const verbReplaced: string = verbTemplateFile.replace(
+    /\{serviceNameLowerCase\}/g,
+    camelCase(nameLowerCase)
+  );
 
   return `${file}\n\n${verbReplaced}`;
 };
@@ -53,6 +53,8 @@ export const createService = ({ name, endpoint, verbs }: CreateServiceType) => {
     from: "services"
   });
 
+  const nameKebabCase: string = kebabCase(name);
+
   let serviceFile: string = serviceTemplateFile.replace(
     /\{endpoint\}/g,
     endpoint
@@ -61,7 +63,7 @@ export const createService = ({ name, endpoint, verbs }: CreateServiceType) => {
   serviceFile = <string>verbs.reduce(createFunctionsOfVerb(name), serviceFile);
 
   return fs.writeFileSync(
-    `${getServiceDirPath()}/${name.toLowerCase()}.service.${getExtension()}`,
+    `${getServiceDirPath()}/${nameKebabCase.toLowerCase()}.service.${getExtension()}`,
     `${serviceFile}\n`
   );
 };

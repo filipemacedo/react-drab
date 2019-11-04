@@ -1,6 +1,14 @@
 import * as inquirer from "inquirer";
 
-export const createQuestions = async () => {
+type ServiceCreateQuestionsType = {
+  name: string;
+  endpoint: string;
+  verbs: "create" | "remove" | "findOne" | "findAll" | "update";
+};
+
+export const createQuestions = async (): Promise<
+  ServiceCreateQuestionsType
+> => {
   return inquirer.prompt([
     {
       type: "input",
@@ -21,7 +29,11 @@ export const createQuestions = async () => {
   ]);
 };
 
-export const initQuestions = async () => {
+type InitQuestionsType = {
+  host: string;
+};
+
+export const initQuestions = async (): Promise<InitQuestionsType> => {
   return inquirer.prompt([
     {
       type: "input",
