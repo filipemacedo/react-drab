@@ -1,13 +1,14 @@
 import help from "./help";
-import {
-  argvType,
-  CommandTerminatedType,
-  CommandsFunctionType
-} from "./commands.type";
+
 import component from "./component";
 import page from "./page";
 import service from "./service";
 import hook from "./hook";
+import {
+  argvType,
+  CommandTerminatedType,
+  CommandsFunctionType
+} from "../types/commands.type";
 
 const commands: CommandsFunctionType[] = [help, component, page, service, hook];
 

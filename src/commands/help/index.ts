@@ -1,7 +1,7 @@
 import {
   CommandTerminatedType,
   argvType
-} from "../commands.type";
+} from "../../types/commands.type";
 import { finished, notFinished } from "../../helpers/command-terminated";
 import helpAction from "./help.action";
 

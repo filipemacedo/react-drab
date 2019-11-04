@@ -1,4 +1,4 @@
-import { CommandTerminatedType, argvType } from "../commands.type";
+import { CommandTerminatedType, argvType } from "../../types/commands.type";
 import { finished, notFinished } from "../../helpers/command-terminated";
 import { isCommand } from "../../helpers/is-command";
 import componentActions from "./component.action";

@@ -3,7 +3,7 @@ import * as inquirer from "inquirer";
 type ServiceCreateQuestionsType = {
   name: string;
   endpoint: string;
-  verbs: "create" | "remove" | "findOne" | "findAll" | "update";
+  verbs: string[];
 };
 
 export const createQuestions = async (): Promise<
