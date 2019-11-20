@@ -4,8 +4,8 @@ import chalk from "chalk";
 import * as figlet from "figlet";
 import * as minimist from "minimist";
 import * as fs from "fs";
-import messages from "./src/messages";
-import commands from "./src/commands";
+import messages from "./messages";
+import commands from "./commands";
 
 const argv = minimist(process.argv.slice(2));
 
