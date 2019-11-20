@@ -100,21 +100,3 @@ export const createReactComponent = ({ name, type, theme, dirPath }) => {
 
   return fs.writeFileSync(componentFilePath, replacedFile);
 };
-
-export const createPage = ({
-  name,
-  type,
-  theme
-}: ComponentFileType & ComponentType) => {
-  const dirPath: string = `${getPageDirPath()}/${spaceToPascalCase(
-    name,
-    true
-  )}`;
-
-  return createReactComponent({
-    name,
-    type,
-    theme,
-    dirPath
-  });
-};

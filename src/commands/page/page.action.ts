@@ -1,6 +1,6 @@
 import { createQuestions } from "./page.questions";
-import { config } from "../../helpers/config";
-import { createPageDirIfNotExists, createPage } from "../../helpers/files";
+import { createPageDirIfNotExists } from "../../helpers/files";
+import { createPage } from "./page.file";
 
 export const helpCreate: Function = () => {};
 
