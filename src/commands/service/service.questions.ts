@@ -1,4 +1,5 @@
 import * as inquirer from "inquirer";
+import removePromptNameQuestion from "../../helpers/remove-prompt-name-question";
 
 type ServiceCreateQuestionsType = {
   name: string;
@@ -6,10 +7,10 @@ type ServiceCreateQuestionsType = {
   verbs: string[];
 };
 
-export const createQuestions = async (): Promise<
-  ServiceCreateQuestionsType
-> => {
-  return inquirer.prompt([
+export const createQuestions = async (
+  name
+): Promise<ServiceCreateQuestionsType> => {
+  const questions = removePromptNameQuestion(name, [
     {
       type: "input",
       name: "name",
@@ -27,6 +28,8 @@ export const createQuestions = async (): Promise<
       choices: ["create", "remove", "findOne", "findAll", "update"]
     }
   ]);
+
+  return inquirer.prompt(questions);
 };
 
 type InitQuestionsType = {

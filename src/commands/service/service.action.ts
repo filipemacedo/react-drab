@@ -1,5 +1,4 @@
 import { createQuestions, initQuestions } from "./service.questions";
-import { config } from "../../helpers/config";
 import { createServiceDirIfNotExists } from "../../helpers/files";
 import { createBase, createService } from "./service.files";
 
@@ -18,16 +17,18 @@ const isInit = async () => {
  *
  * @param help
  */
-export const create = async ({ help, init }) => {
+export const create = async ({ help, init, fileName }) => {
   if (help) return helpCreate();
 
   createServiceDirIfNotExists();
 
   if (init) return isInit();
 
-  const { name, endpoint, verbs } = await createQuestions();
+  const { name, endpoint, verbs } = await createQuestions(fileName);
 
-  return createService({ name, endpoint, verbs });
+  const definedName = fileName || name;
+
+  return createService({ name: definedName, endpoint, verbs });
 };
 
 export default {

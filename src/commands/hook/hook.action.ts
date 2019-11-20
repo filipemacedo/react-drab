@@ -7,20 +7,23 @@ export const helpCreate: Function = () => {};
 
 type HookCreateType = {
   help: boolean;
+  fileName?: string;
 };
 
 /**
  *
  * @param help
  */
-export const create = async ({ help }: HookCreateType) => {
+export const create = async ({ help, fileName }: HookCreateType) => {
   if (help) return helpCreate();
 
   createHookDirIfNotExists();
 
-  const { name } = await createQuestions();
+  const { name } = await createQuestions(fileName);
 
-  return createHook({ name });
+  const definedName: string = fileName || name;
+
+  return createHook({ name: definedName });
 };
 
 export default {

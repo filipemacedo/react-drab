@@ -1,21 +1,7 @@
-import { CommandTerminatedType, argvType } from "../../types/commands.type";
-import { finished, notFinished } from "../../helpers/command-terminated";
-import { isCommand } from "../../helpers/is-command";
 import componentActions from "./component.action";
+import verifyIfIsCommand from "../../helpers/verify-if-is-command";
 
-export default (args: argvType): CommandTerminatedType => {
-  const { _, help } = <argvType>args;
-
-  const isCommandWithArgs: Function = isCommand(_);
-
-  const isCreateComponent: boolean = isCommandWithArgs(["create", "component"]);
-  const isCopyComponent: boolean = isCommandWithArgs(["copy", "component"]);
-
-  if (isCreateComponent) {
-    componentActions.create({ help });
-
-    return finished();
-  }
-
-  return notFinished();
-};
+export default verifyIfIsCommand({
+  actions: componentActions,
+  commands: ["create", "component"]
+});

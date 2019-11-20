@@ -1,8 +1,11 @@
 import * as inquirer from "inquirer";
 import { ComponentCreateQuestionsType } from "../../types/component.type";
+import removePromptNameQuestion from "../../helpers/remove-prompt-name-question";
 
-export const createQuestions = async (): Promise<ComponentCreateQuestionsType> => {
-  return inquirer.prompt([
+export const createQuestions = async (
+  name
+): Promise<ComponentCreateQuestionsType> => {
+  const questions = removePromptNameQuestion(name, [
     {
       type: "input",
       name: "name",
@@ -21,4 +24,6 @@ export const createQuestions = async (): Promise<ComponentCreateQuestionsType> =
       choices: ["rc", "rrc", "rsc", "rrsc", "rfc"]
     }
   ]);
+
+  return inquirer.prompt(questions);
 };

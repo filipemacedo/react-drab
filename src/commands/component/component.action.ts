@@ -12,13 +12,15 @@ export const helpCopy: Function = () => {};
  *
  * @param help
  */
-export const create = async ({ help }): Promise<void> => {
+export const create = async ({ help, fileName }): Promise<void> => {
   if (help) return helpCreate();
 
-  const { name, theme, type } = await createQuestions();
+  const { name, theme, type } = await createQuestions(fileName);
+
+  const definedName: string = fileName || name;
 
   createComponentDirIfNotExists();
-  createComponent({ name, type, theme });
+  createComponent({ name: definedName, type, theme });
 };
 
 export const copy: Function = ({ help }) => {

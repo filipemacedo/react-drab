@@ -1,20 +1,7 @@
-import { CommandTerminatedType, argvType } from "../../types/commands.type";
-import { finished, notFinished } from "../../helpers/command-terminated";
-import { isCommand } from "../../helpers/is-command";
 import serviceActions from "./service.action";
+import verifyIfIsCommand from "../../helpers/verify-if-is-command";
 
-export default (args: argvType): CommandTerminatedType => {
-  const { _, help, init } = <argvType>args;
-
-  const isCommandWithArgs: Function = isCommand(_);
-
-  const isCreateService: boolean = isCommandWithArgs(["create", "service"]);
-
-  if (isCreateService) {
-    serviceActions.create({ help, init });
-
-    return finished();
-  }
-
-  return notFinished();
-};
+export default verifyIfIsCommand({
+  actions: serviceActions,
+  commands: ["create", "service"]
+});
