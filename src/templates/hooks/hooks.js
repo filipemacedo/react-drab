@@ -1,5 +1,5 @@
 import React from 'react';
 
-export function use{hookName}() {
+export function {hookName}() {
 
 }

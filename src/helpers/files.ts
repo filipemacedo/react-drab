@@ -60,8 +60,7 @@ const createStyleComponentFile = ({
   path,
   theme
 }: CreateStyleFileType & ComponentFileType) => {
-  const nameLowerCase = <string>name.toLowerCase();
-  const nameKebabCase = kebabCase(nameLowerCase);
+  const nameKebabCase = kebabCase(name);
 
   if (theme === "css" || theme === "scss")
     return fs.writeFileSync(`${path}/${nameKebabCase}.${theme}`, "");
@@ -89,7 +88,7 @@ const createReactComponent = ({ name, type, theme, dirPath }) => {
 
   let replacedFile: string = typeFile.replace(
     /\{componentName\}/g,
-    spaceToPascalCase(name)
+    spaceToPascalCase(name, true)
   );
 
   replacedFile = <string>(
@@ -112,7 +111,10 @@ export const createComponent = ({
   type,
   theme
 }: ComponentFileType & ComponentType) => {
-  const dirPath: string = `${getComponentDirPath()}/${spaceToPascalCase(name)}`;
+  const dirPath: string = `${getComponentDirPath()}/${spaceToPascalCase(
+    name,
+    true
+  )}`;
 
   return createReactComponent({
     name,
@@ -127,7 +129,10 @@ export const createPage = ({
   type,
   theme
 }: ComponentFileType & ComponentType) => {
-  const dirPath: string = `${getPageDirPath()}/${spaceToPascalCase(name)}`;
+  const dirPath: string = `${getPageDirPath()}/${spaceToPascalCase(
+    name,
+    true
+  )}`;
 
   return createReactComponent({
     name,

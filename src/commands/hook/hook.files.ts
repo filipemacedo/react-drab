@@ -3,7 +3,8 @@ import * as fs from "fs";
 import { getExtension, getHookDirPath } from "../../helpers/config";
 import {
   kebabCase,
-  spaceToPascalCase
+  spaceToPascalCase,
+  transformFirstLetterToUpperCase
 } from "../../helpers/string-cases";
 
 type CreateHookType = {
@@ -19,13 +20,28 @@ export const createHook = ({ name }: CreateHookType) => {
     file: "hooks.js"
   });
 
-  let hookFile: string = hookTemplateFile.replace(
-    /\{hookName\}/g,
-    namePascalCase
+  const firstLetterOfHookName = transformFirstLetterToUpperCase(
+    namePascalCase,
+    true
   );
 
+  console.log(firstLetterOfHookName)
+
+  const definedHookName = namePascalCase.includes("use")
+    ? namePascalCase
+    : `use${firstLetterOfHookName}${namePascalCase.slice(1)}`;
+
+  let hookFile: string = hookTemplateFile.replace(
+    /\{hookName\}/g,
+    definedHookName
+  );
+
+  const fileNameWithoutUse = nameKebabCase
+    .toLocaleLowerCase()
+    .replace("use-", "");
+
   return fs.writeFileSync(
-    `${getHookDirPath()}/${nameKebabCase.toLowerCase()}.hook.${getExtension()}`,
+    `${getHookDirPath()}/${fileNameWithoutUse}.hook.${getExtension()}`,
     hookFile
   );
 };
