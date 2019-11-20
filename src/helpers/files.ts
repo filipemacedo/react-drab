@@ -76,7 +76,7 @@ const createStyleComponentFile = ({
   );
 };
 
-const createReactComponent = ({ name, type, theme, dirPath }) => {
+export const createReactComponent = ({ name, type, theme, dirPath }) => {
   const componentFilePath: string = `${dirPath}/index.${getExtension()}`;
 
   createDirIfNotExists(dirPath);
@@ -99,29 +99,6 @@ const createReactComponent = ({ name, type, theme, dirPath }) => {
     createStyleComponentFile({ name, path: dirPath, theme });
 
   return fs.writeFileSync(componentFilePath, replacedFile);
-};
-
-/**
- *
- * @param name
- * @param type
- */
-export const createComponent = ({
-  name,
-  type,
-  theme
-}: ComponentFileType & ComponentType) => {
-  const dirPath: string = `${getComponentDirPath()}/${spaceToPascalCase(
-    name,
-    true
-  )}`;
-
-  return createReactComponent({
-    name,
-    type,
-    theme,
-    dirPath
-  });
 };
 
 export const createPage = ({

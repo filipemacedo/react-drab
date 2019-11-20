@@ -2,8 +2,8 @@ import { createQuestions } from "./component.questions";
 import { config } from "../../helpers/config";
 import {
   createComponentDirIfNotExists,
-  createComponent
 } from "../../helpers/files";
+import { createComponent } from "./component.file";
 
 export const helpCreate: Function = () => {};
 export const helpCopy: Function = () => {};
