@@ -1,5 +1,4 @@
 import { createQuestions } from "./component.questions";
-import { config } from "../../helpers/config";
 import {
   createComponentDirIfNotExists,
 } from "../../helpers/files";
@@ -23,11 +22,6 @@ export const create = async ({ help, fileName }): Promise<void> => {
   createComponent({ name: definedName, type, theme });
 };
 
-export const copy: Function = ({ help }) => {
-  if (help) return helpCreate();
-};
-
 export default {
-  create,
-  copy
+  create
 };
