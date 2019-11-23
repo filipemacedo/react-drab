@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 type ConfigType = {
   extension: "js" | "ts";
   components: string;
@@ -8,8 +10,12 @@ type ConfigType = {
 
 const dir: string = process.cwd();
 const dirWithoutConfig = `${dir}/src`;
+const configPath = `${dir}/drab.json`;
 
-export const config: ConfigType = require(`${dir}/drab.json`);
+const configFile =
+  fs.existsSync(configPath) && fs.readFileSync(`${dir}/drab.json`, "utf8");
+  
+export const config: ConfigType = configFile && JSON.parse(configFile);
 
 /**
  * This function is responsible for get component path
