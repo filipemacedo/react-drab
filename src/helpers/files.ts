@@ -88,7 +88,7 @@ export const createReactComponent = ({ name, type, theme, dirPath }) => {
 
   let replacedFile: string = typeFile.replace(
     /\{componentName\}/g,
-    spaceToPascalCase(name, true)
+    spaceToPascalCase(name)
   );
 
   replacedFile = <string>(

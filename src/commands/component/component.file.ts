@@ -14,8 +14,7 @@ export const createComponent = ({
   theme
 }: ComponentFileType & ComponentType) => {
   const dirPath: string = `${getComponentDirPath()}/${spaceToPascalCase(
-    name,
-    true
+    name
   )}`;
 
   return createReactComponent({

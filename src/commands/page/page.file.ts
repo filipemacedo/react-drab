@@ -8,10 +8,7 @@ export const createPage = ({
   type,
   theme
 }: ComponentFileType & ComponentType) => {
-  const dirPath: string = `${getPageDirPath()}/${spaceToPascalCase(
-    name,
-    true
-  )}`;
+  const dirPath: string = `${getPageDirPath()}/${spaceToPascalCase(name)}`;
 
   return createReactComponent({
     name,

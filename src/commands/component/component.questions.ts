@@ -21,7 +21,13 @@ export const createQuestions = async (
       type: "list",
       name: "type",
       message: "What type of component?",
-      choices: ["rc", "rrc", "rsc", "rrsc", "rfc"]
+      choices: [
+        "rc (Stateful Component)",
+        "rrc (Stateful component connected to Redux)",
+        "rsc (Stateless Component)",
+        "rrsc (Stateless component connected to Redux)",
+        "rfc (Functional Component)"
+      ]
     }
   ]);
 

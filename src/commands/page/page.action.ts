@@ -13,10 +13,11 @@ export const create = async ({ help, fileName }) => {
 
   const { name, theme, type } = await createQuestions(fileName);
 
+  const [definedType] = type.split(" ");
   const definedName = fileName || name;
 
   createPageDirIfNotExists();
-  createPage({ name: definedName, type, theme });
+  createPage({ name: definedName, type: definedType, theme });
 };
 
 export default {
