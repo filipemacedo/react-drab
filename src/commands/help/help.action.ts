@@ -9,8 +9,6 @@ export default () => {
 
   table.push(
     ["drab create component", "use to create a new command"],
-    ["drab copy component", "use to copy a component"],
-    ["drab create config", "use to create a config"],
     ["drab create hook", "use to create a hook"],
     ["drab create service", "use to create a service"],
     ["drab create page", "use to create a page"],
