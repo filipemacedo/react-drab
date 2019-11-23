@@ -8,10 +8,16 @@ export default () => {
   });
 
   table.push(
-    ["drab create component", "use to create a new command"],
-    ["drab create hook", "use to create a hook"],
-    ["drab create service", "use to create a service"],
-    ["drab create page", "use to create a page"],
+    [
+      "drab create component [name]",
+      "Command responsible for creating a new component."
+    ],
+    ["drab create hook [name]", "Command responsible for creating a new hook."],
+    [
+      "drab create service [name]",
+      "Command responsible for creating a new service."
+    ],
+    ["drab create page [name]", "Command responsible for creating a new page."]
   );
 
   console.log(chalk.white("\ndrab [command]\n"));
