@@ -1,4 +1,4 @@
 node_modules
 testando
 package-lock.json
-bin/
+bin/*
