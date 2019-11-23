@@ -18,9 +18,17 @@ import { kebabCase, pascalCase, spaceToPascalCase } from "./string-cases";
 const templatePath = `${__dirname}/../templates`;
 
 export const createDirIfNotExists = (path: string) => {
-  if (fs.existsSync(path)) return;
+  const [rootDir, ...directories] = path.split("/");
 
-  return fs.mkdirSync(path);
+  return directories.reduce((previous, current) => {
+    const createPath = `${previous}/${current}`;
+
+    if (!fs.existsSync(createPath)) {
+      fs.mkdirSync(createPath);
+    }
+
+    return createPath;
+  }, rootDir);
 };
 
 /**
