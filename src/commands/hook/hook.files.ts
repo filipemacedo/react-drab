@@ -25,8 +25,6 @@ export const createHook = ({ name }: CreateHookType) => {
     true
   );
 
-  console.log(firstLetterOfHookName)
-
   const definedHookName = namePascalCase.includes("use")
     ? namePascalCase
     : `use${firstLetterOfHookName}${namePascalCase.slice(1)}`;
