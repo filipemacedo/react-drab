@@ -1,8 +1,7 @@
 {
-  "name": "cli-devagil",
+  "name": "drab-cli",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "CLI to improve your productivity using ReactJS",
   "dependencies": {
     "@types/node": "^12.12.5",
     "chalk": "^2.4.2",
@@ -20,8 +19,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./node_modules/.bin/tsc"
   },
-  "author": "",
+  "author": "Filipe Macedo",
   "license": "ISC"
 }
