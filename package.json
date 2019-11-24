@@ -11,8 +11,7 @@
     "inquirer": "^7.0.0",
     "json-beautify": "^1.1.1",
     "minimist": "^1.2.0",
-    "shelljs": "^0.8.3",
-    "typescript": "^3.7.2"
+    "shelljs": "^0.8.3"
   },
   "repository": {
     "type": "git",
@@ -31,7 +30,9 @@
   "bin": {
     "react-drab": "./bin/index.js"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "typescript": "^3.7.2"
+  },
   "scripts": {
     "build": "./node_modules/.bin/tsc"
   },
