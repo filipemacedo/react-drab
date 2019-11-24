@@ -1,0 +1,13 @@
+{
+ "compilerOptions": {
+   "target": "es5",           
+   "module": "commonjs",                 
+   "declaration": true,
+   "lib": ["es2018", "dom"],     
+   "outDir": "bin",         
+   "rootDir": "src"      
+ },
+ "exclude": [
+  "node_modules"
+ ]
+}
