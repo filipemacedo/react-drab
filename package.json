@@ -1,5 +1,5 @@
 {
-  "name": "drab-cli",
+  "name": "react-drab-cli",
   "version": "1.0.0",
   "description": "CLI to improve your productivity using ReactJS",
   "dependencies": {
