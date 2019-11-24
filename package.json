@@ -1,6 +1,6 @@
 {
-  "name": "react-drab-cli",
-  "version": "1.0.0",
+  "name": "react-drab",
+  "version": "1.0.1",
   "description": "CLI to improve your productivity using ReactJS",
   "dependencies": {
     "@types/node": "^12.12.5",
@@ -14,8 +14,22 @@
     "shelljs": "^0.8.3",
     "typescript": "^3.7.2"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/filipemacedo/react-drab.git"
+  },
+  "bugs": {
+    "url": "https://github.com/filipemacedo/react-drab/issues"
+  },
+  "homepage": "https://github.com/filipemacedo/react-drab/",
+  "keywords": [
+    "ReactJS CLI",
+    "CLI ReactJS",
+    "Reactjs cli",
+    "Fast development react"
+  ],
   "bin": {
-    "drab": "./bin/index.js"
+    "react-drab": "./bin/index.js"
   },
   "devDependencies": {},
   "scripts": {
