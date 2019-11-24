@@ -4,6 +4,10 @@
 ## Description
 Drab is a ReactJS CLI responsible for solving monotonous problems during development.
 
+## Install
+
+`npm i -g react-drab`
+
 ## Features
 - Create component including style (scss, css and styled-components)
 - Create page including style (scss, css and styled-components)
