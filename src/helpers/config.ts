@@ -45,7 +45,7 @@ export const getServiceDirPath: Function = (): string =>
  * This function is responsible for get hook path
  */
 export const getHookDirPath: Function = (): string =>
-  config && config.extension
+  config && config.hooks
     ? `${dir}/${config.hooks}`
     : `${dirWithoutConfig}/hooks`;
 
