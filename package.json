@@ -1,6 +1,6 @@
 {
   "name": "react-drab",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "CLI to improve your productivity using ReactJS",
   "dependencies": {
     "@types/node": "^12.12.5",
