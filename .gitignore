@@ -1,4 +1,5 @@
 node_modules
 testando
 package-lock.json
+yarn.lock
 bin/*
