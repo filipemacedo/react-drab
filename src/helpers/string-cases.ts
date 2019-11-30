@@ -1,4 +1,4 @@
-import applyKebabWhenUpperCase from "./apply-kebab-when-upper-case";
+import applyKebabWhenUpperCase from './apply-kebab-when-upper-case';
 
 /**
  * This function is responsible for
@@ -9,16 +9,16 @@ import applyKebabWhenUpperCase from "./apply-kebab-when-upper-case";
  * @param isOnlyFirst
  */
 export const transformFirstLetterToUpperCase = (
-  text: any,
-  isOnlyFirst: boolean = false
+	text: any,
+	isOnlyFirst: boolean = false
 ): string => {
-  const [firstLetter, ...othersLetters] = text;
+	const [firstLetter, ...othersLetters] = text;
 
-  const firstLetterDefined: string = firstLetter.toUpperCase();
+	const firstLetterDefined: string = firstLetter.toUpperCase();
 
-  if (isOnlyFirst) return firstLetterDefined;
+	if (isOnlyFirst) return firstLetterDefined;
 
-  return `${firstLetterDefined}${othersLetters.toLowerCase()}`;
+	return `${firstLetterDefined}${othersLetters.toLowerCase()}`;
 };
 
 /**
@@ -29,11 +29,11 @@ export const transformFirstLetterToUpperCase = (
  * @param currentText
  */
 export const pascalCase = (completeText: string, currentText: any): string => {
-  if (currentText.length === 1) return completeText;
+	if (currentText.length === 1) return completeText;
 
-  const text = transformFirstLetterToUpperCase(currentText);
+	const text = transformFirstLetterToUpperCase(currentText);
 
-  return `${completeText}${text}`;
+	return `${completeText}${text}`;
 };
 
 /**
@@ -43,12 +43,11 @@ export const pascalCase = (completeText: string, currentText: any): string => {
  * @param text
  */
 export const spaceToPascalCase = (text: string, forcePascal = false) => {
-  let nameSplit: string[] = text.trim().split(" ");
+	let nameSplit: string[] = text.trim().split(' ');
 
-  if (nameSplit.length > 1 || forcePascal)
-    return nameSplit.reduce(pascalCase, "");
+	if (nameSplit.length > 1 || forcePascal) return nameSplit.reduce(pascalCase, '');
 
-  return text;
+	return text;
 };
 
 /**
@@ -58,18 +57,18 @@ export const spaceToPascalCase = (text: string, forcePascal = false) => {
  * @param text
  */
 export const kebabCase = text => {
-  let textSplit = text.trim().split(" ");
+	let textSplit = text.trim().split(' ');
 
-  if (textSplit.length > 1) return textSplit.join("-");
+	if (textSplit.length > 1) return textSplit.join('-');
 
-  textSplit = text.split(/([A-Z])/g);
-  textSplit = applyKebabWhenUpperCase(textSplit);
+	textSplit = text.split(/([A-Z])/g);
+	textSplit = applyKebabWhenUpperCase(textSplit);
 
-  return textSplit.toLowerCase();
+	return textSplit.toLowerCase();
 };
 
 export const camelCase = text => {
-  const [first, ...others] = text.trim().split(" ");
+	const [first, ...others] = text.trim().split(' ');
 
-  return others.reduce(pascalCase, first);
+	return others.reduce(pascalCase, first);
 };

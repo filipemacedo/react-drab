@@ -1,18 +1,18 @@
 export type TemplateFileType = {
-  file: string;
-  from: string;
+	file: string;
+	from: string;
 };
 
 export type CreateStyleFileType = {
-  path: string;
+	path: string;
 };
 
 export type ComponentType = {
-  type: string;
+	type: string;
 };
 
 export type ComponentFileType = {
-  name: string;
-  theme: "css" | "styled-components" | "none" | "scss";
-  file?: string;
+	name: string;
+	theme: 'css' | 'styled-components' | 'none' | 'scss';
+	file?: string;
 };
