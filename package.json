@@ -1,41 +1,43 @@
 {
-  "name": "react-drab",
-  "version": "1.0.3",
-  "description": "CLI to improve your productivity using ReactJS",
-  "dependencies": {
-    "@types/node": "^12.12.5",
-    "chalk": "^2.4.2",
-    "cli-table": "^0.3.1",
-    "colors": "^1.4.0",
-    "figlet": "^1.2.4",
-    "inquirer": "^7.0.0",
-    "json-beautify": "^1.1.1",
-    "minimist": "^1.2.0",
-    "shelljs": "^0.8.3"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/filipemacedo/react-drab.git"
-  },
-  "bugs": {
-    "url": "https://github.com/filipemacedo/react-drab/issues"
-  },
-  "homepage": "https://github.com/filipemacedo/react-drab/",
-  "keywords": [
-    "ReactJS CLI",
-    "CLI ReactJS",
-    "Reactjs cli",
-    "Fast development react"
-  ],
-  "bin": {
-    "react-drab": "./bin/index.js"
-  },
-  "devDependencies": {
-    "typescript": "^3.7.2"
-  },
-  "scripts": {
-    "build": "./node_modules/.bin/tsc"
-  },
-  "author": "Filipe Macedo",
-  "license": "ISC"
+    "name": "react-drab",
+    "version": "1.0.3",
+    "description": "CLI to improve your productivity using ReactJS",
+    "dependencies": {
+        "@types/node": "^12.12.5",
+        "chalk": "^2.4.2",
+        "cli-table": "^0.3.1",
+        "colors": "^1.4.0",
+        "figlet": "^1.2.4",
+        "inquirer": "^7.0.0",
+        "json-beautify": "^1.1.1",
+        "minimist": "^1.2.0",
+        "shelljs": "^0.8.3"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/filipemacedo/react-drab.git"
+    },
+    "bugs": {
+        "url": "https://github.com/filipemacedo/react-drab/issues"
+    },
+    "homepage": "https://github.com/filipemacedo/react-drab/",
+    "keywords": [
+        "ReactJS CLI",
+        "CLI ReactJS",
+        "Reactjs cli",
+        "Fast development react"
+    ],
+    "bin": {
+        "react-drab": "./bin/index.js"
+    },
+    "devDependencies": {
+        "typescript": "^3.7.2"
+    },
+    "scripts": {
+        "prebuild": "yarn clean",
+        "build": "./node_modules/.bin/tsc",
+        "clean": "node clean.js"
+    },
+    "author": "Filipe Macedo",
+    "license": "ISC"
 }
