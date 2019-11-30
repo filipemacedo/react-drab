@@ -9,10 +9,12 @@ export const helpCopy: Function = () => {};
  *
  * @param help
  */
-export const create = async ({ help, fileName }): Promise<void> => {
+export const create = async ({ help, native, fileName }): Promise<void> => {
 	if (help) return helpCreate();
 
-	const { platform, name, theme, type } = await createQuestions(fileName);
+	const platform = native ? 'react-native' : 'react';
+
+	const { name, theme, type } = await createQuestions(fileName);
 
 	const [definedType] = type.split(' ');
 	const definedName: string = fileName || name;

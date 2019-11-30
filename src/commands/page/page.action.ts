@@ -8,10 +8,12 @@ export const helpCreate: Function = () => {};
  *
  * @param help
  */
-export const create = async ({ help, fileName }) => {
+export const create = async ({ help, native, fileName }) => {
 	if (help) return helpCreate();
 
-	const { platform, name, theme, type } = await createQuestions(fileName);
+	const platform = native ? 'react-native' : 'react';
+
+	const { name, theme, type } = await createQuestions(fileName);
 
 	const [definedType] = type.split(' ');
 	const definedName = fileName || name;
