@@ -7,6 +7,12 @@ export const createQuestions = async (
 ): Promise<ComponentCreateQuestionsType> => {
   const questions = removePromptNameQuestion(name, [
     {
+      type: "list",
+      name: "platform",
+      choices: ["react", "react-native"],
+      message: "What is the platform"
+    },
+    {
       type: "input",
       name: "name",
       message: "What is the name of the component"

@@ -12,6 +12,7 @@ export type ComponentType = {
 };
 
 export type ComponentFileType = {
+	platform: 'react' | 'react-native';
 	name: string;
 	theme: 'css' | 'styled-components' | 'none' | 'scss';
 	file?: string;

@@ -1,6 +1,6 @@
 import { ComponentFileType } from '../types/files.type';
 
-export default ({ theme, file, name }: ComponentFileType): string => {
+export default ({ platform, theme, file, name }: ComponentFileType): string => {
 	const nameLowerCase: string = name.toLowerCase();
 	const pattern: RegExp = /\/\/.+\'\.\/styles\';/g;
 

@@ -1,7 +1,7 @@
-import { ComponentFileType, ComponentType } from "../../types/files.type";
-import { getComponentDirPath } from "../../helpers/config";
-import { spaceToPascalCase } from "../../helpers/string-cases";
-import { createReactComponent } from "../../helpers/files";
+import { ComponentFileType, ComponentType } from '../../types/files.type';
+import { getComponentDirPath } from '../../helpers/config';
+import { spaceToPascalCase } from '../../helpers/string-cases';
+import { createReactComponent } from '../../helpers/files';
 
 /**
  *
@@ -9,18 +9,18 @@ import { createReactComponent } from "../../helpers/files";
  * @param type
  */
 export const createComponent = ({
-  name,
-  type,
-  theme
+	platform,
+	name,
+	type,
+	theme,
 }: ComponentFileType & ComponentType) => {
-  const dirPath: string = `${getComponentDirPath()}/${spaceToPascalCase(
-    name
-  )}`;
+	const dirPath: string = `${getComponentDirPath()}/${spaceToPascalCase(name)}`;
 
-  return createReactComponent({
-    name,
-    type,
-    theme,
-    dirPath
-  });
+	return createReactComponent({
+		platform,
+		name,
+		type,
+		theme,
+		dirPath,
+	});
 };
