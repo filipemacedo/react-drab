@@ -60,6 +60,7 @@ export const createHookDirIfNotExists = () => createDirIfNotExists(getHookDirPat
  * @param param0
  */
 const createStyleComponentFile = ({
+	platform,
 	name,
 	path,
 	theme,
@@ -71,29 +72,29 @@ const createStyleComponentFile = ({
 
 	const styledFile = <string>readTemplateFile({
 		file: 'styled.js',
-		from: 'components',
+		from: `components/${platform}`,
 	});
 
 	return fs.writeFileSync(`${path}/${nameKebabCase}.styles.${getExtension()}`, styledFile);
 };
 
-export const createReactComponent = ({ name, type, theme, dirPath }) => {
+export const createReactComponent = ({ platform, name, type, theme, dirPath }) => {
 	const componentFilePath: string = `${dirPath}/index.${getExtension()}`;
 
 	createDirIfNotExists(dirPath);
 
 	const typeFile: string = readTemplateFile({
 		file: `${type}.js`,
-		from: 'components',
+		from: `components/${platform}`,
 	});
 
 	let replacedFile: string = typeFile.replace(/\{componentName\}/g, spaceToPascalCase(name));
 
 	replacedFile = <string>(
-		defineComponentStyles({ theme, file: replacedFile, name: kebabCase(name) })
+		defineComponentStyles({ platform, theme, file: replacedFile, name: kebabCase(name) })
 	);
 
-	if (theme !== 'none') createStyleComponentFile({ name, path: dirPath, theme });
+	if (theme !== 'none') createStyleComponentFile({ platform, name, path: dirPath, theme });
 
 	return fs.writeFileSync(componentFilePath, replacedFile);
 };

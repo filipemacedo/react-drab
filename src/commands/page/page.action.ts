@@ -1,6 +1,6 @@
-import { createQuestions } from "./page.questions";
-import { createPageDirIfNotExists } from "../../helpers/files";
-import { createPage } from "./page.file";
+import { createQuestions } from './page.questions';
+import { createPageDirIfNotExists } from '../../helpers/files';
+import { createPage } from './page.file';
 
 export const helpCreate: Function = () => {};
 
@@ -8,18 +8,20 @@ export const helpCreate: Function = () => {};
  *
  * @param help
  */
-export const create = async ({ help, fileName }) => {
-  if (help) return helpCreate();
+export const create = async ({ help, native, fileName }) => {
+	if (help) return helpCreate();
 
-  const { name, theme, type } = await createQuestions(fileName);
+	const platform = native ? 'react-native' : 'react';
 
-  const [definedType] = type.split(" ");
-  const definedName = fileName || name;
+	const { name, theme, type } = await createQuestions(fileName);
 
-  createPageDirIfNotExists();
-  createPage({ name: definedName, type: definedType, theme });
+	const [definedType] = type.split(' ');
+	const definedName = fileName || name;
+
+	createPageDirIfNotExists();
+	createPage({ platform, name: definedName, type: definedType, theme });
 };
 
 export default {
-  create
+	create,
 };
